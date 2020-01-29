@@ -26,4 +26,10 @@ class CategoryService
         $chunks = $this->categories->chunk($half);;
         return $side == 'L' ? $chunks[0] : $chunks[1];
     }
+
+
+    public function getForPostEdit()
+    {
+        return $this->categories;
+    }
 }

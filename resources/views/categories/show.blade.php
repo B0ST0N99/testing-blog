@@ -45,7 +45,7 @@
             <!-- Blog Post -->
             @forelse ($category->posts as $post)
                 <div class="card mb-4">
-                    <img class="card-img-top" src="{{ $post->file }}" alt="Card image cap">
+                    <img class="card-img-top img-fluid " src="/{{ $post->file }}" alt="Card image cap" style="width: 100%;height: 20vw;object-fit: cover;">
                     <div class="card-body">
                         <h2 class="card-title">{{ $post->name }}</h2>
                         <p class="card-text">{{ $post->excerpt }}</p>

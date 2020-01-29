@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title',$item->exists ?  'Edit category ' . $item->name : 'Create new category')
+@section('title',$item->exists ?  'Edit post ' . $item->name : 'Create new post')
 @section('content')
-    @php /** @var \App\Models\Category $item */ @endphp
+    @php /** @var \App\Models\Post $item */ @endphp
 
     @if($item->exists)
-        <form method="POST"  action="{{ route('category.update', $item->id) }}">
+        <form method="POST"  action="{{ route('post.update', $item->id) }}">
         @method('PATCH')
     @else
-     <form method="POST" action="{{ route('category.store') }}">
+     <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
     @endif
         @csrf
 
@@ -42,10 +42,10 @@
             @endif
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    @include('categories.includes.item_edit_main_col')
+                    @include('posts.includes.item_edit_main_col')
                 </div>
                 <div class="col-md-3">
-                    @include('categories.includes.item_edit_add_col')
+                    @include('posts.includes.item_edit_add_col')
                 </div>
             </div>
         </div>

@@ -8,7 +8,12 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-
+    protected $fillable = [
+        'name',
+        'content',
+        'category_id',
+        'file',
+    ];
     public function getExcerptAttribute()
     {
         $value = Str::limit($this->content,200);
