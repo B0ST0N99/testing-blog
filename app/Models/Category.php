@@ -14,9 +14,21 @@ class Category extends Model
     ];
 
 
+    /**
+     * Get all of the categories posts.
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+
+    /**
+     * Get all of the categories comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function getCreatedAtAttribute($value)

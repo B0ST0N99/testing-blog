@@ -26,7 +26,7 @@
 
 <!--Main layout-->
 <main class="mt-5 pt-5">
-    <div class="container">
+    <div class="container" id="app">
        {{-- @yield('breadcrumbs')
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
