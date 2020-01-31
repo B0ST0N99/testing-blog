@@ -13,8 +13,9 @@ class CommentController extends Controller
 
     public function __construct()
     {
+//        dd();
         $this->model = Relation::getMorphedModel(
-            request()->route()->parameter('model')
+            request()->model
         );
         if ($this->model === null) {
             return response()->json(['message' => 'Sorry, but something go wrong! Not Found!'], 404);

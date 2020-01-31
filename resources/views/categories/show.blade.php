@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <h2 class="card-title">{{ $post->name }}</h2>
                         <p class="card-text">{{ $post->excerpt }}</p>
-                        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                        <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
                         Posted on {{ $post->created_at }} {{--by
@@ -68,7 +68,7 @@
             <hr>
 
 
-            <comment-component comment-type="category" :item-id="{{ $category->id }}"/>
+            <comment-component comment-type="category" :item-id="{{ $category->id }}"></comment-component>
 
 
 

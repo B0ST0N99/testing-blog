@@ -34,7 +34,9 @@
                         </div>
 
                         <div class="form-group">
+
                             <label for="file">File</label>
+                            <img class="img-fluid rounded" src="/{{$item->file}}" alt="Post image">
                             <input type="file" class="form-control-file" id="file" name="file">
                         </div>
 
