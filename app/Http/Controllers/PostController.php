@@ -85,21 +85,58 @@ class PostController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Post $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->only(['name','content','category_id']);
+
+       if ($request->file){
+//           dd();
+           $fileForDeleting = str_replace('storage/','',$post->file);
+           Storage::disk('public')->delete($fileForDeleting);
+
+           $path = 'storage/' . Storage::disk('public')->putFile('posts', $request->file('file'));;
+           $data['file'] = $path;
+       }
+
+
+        $result = $post->update($data);
+
+        if ($result) {
+            return redirect()
+                ->route('post.edit', $post->id)
+                ->with(['success' => 'Success saving']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Error saving'])
+                ->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Post $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Post $post)
     {
-        //
+
+        $fileForDeleting = str_replace('storage/','',$post->file);
+        Storage::disk('public')->delete($fileForDeleting);
+
+        $delete = $post->delete();
+        if ($delete){
+            return redirect()
+                ->route('welcome')
+                ->with(['success' => 'Success deleting post']);
+        }else{
+            return redirect()
+                ->route('welcome')
+                ->withErrors(['msg' => 'Error deleting post']);
+        }
+
     }
 }

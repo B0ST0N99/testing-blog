@@ -15,6 +15,11 @@
                     <a href="{{ route('category.edit',$category->id) }}" class="col-1">
                         <i class="fas fa-edit"></i>
                     </a>
+                    <form action="{{ route('category.destroy',$category->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" style="background: transparent; border: 0"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
                 </div>
             </div>
 

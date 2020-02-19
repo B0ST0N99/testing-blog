@@ -4,7 +4,7 @@
 
 @section('content')
 
-@php /** @param App\Models\Post $post */@endphp
+    @php /** @param App\Models\Post $post */@endphp
     <div class="row">
 
         <!-- Post Content Column -->
@@ -17,6 +17,11 @@
                     <a href="{{ route('post.edit',$post->id) }}" class="col-1">
                         <i class="fas fa-edit"></i>
                     </a>
+                    <form action="{{ route('post.destroy',$post->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" style="background: transparent; border: 0"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
                 </div>
             </div>
 
@@ -44,7 +49,7 @@
 
             <hr>
 
-            <comment-component  comment-type="post" :item-id="{{ $post->id }}"></comment-component>
+            <comment-component comment-type="post" :item-id="{{ $post->id }}"></comment-component>
 
         </div>
 

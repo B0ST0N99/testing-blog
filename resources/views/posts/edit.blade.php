@@ -4,7 +4,7 @@
     @php /** @var \App\Models\Post $item */ @endphp
 
     @if($item->exists)
-        <form method="POST"  action="{{ route('post.update', $item->id) }}">
+        <form method="POST"  action="{{ route('post.update', $item->id) }}" enctype="multipart/form-data">
         @method('PATCH')
     @else
      <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">

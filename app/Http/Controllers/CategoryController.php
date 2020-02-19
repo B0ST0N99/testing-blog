@@ -92,21 +92,42 @@ class CategoryController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->only(['name','description']);
+        $result = $category->update($data);
+
+        if ($result) {
+            return redirect()
+                ->route('category.edit', $category->id)
+                ->with(['success' => 'Success saving']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Error saving'])
+                ->withInput();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param \App\Models\Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {
-        //
+        $delete = $category->delete();
+        if ($delete){
+            return redirect()
+                ->route('welcome')
+                ->with(['success' => 'Success deleting category']);
+        }else{
+            return redirect()
+                ->route('welcome')
+                ->withErrors(['msg' => 'Error deleting category']);
+        }
     }
 }
