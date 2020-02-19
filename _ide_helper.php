@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.36 on 2020-01-28 20:14:57.
+ * Generated for Laravel 5.8.36 on 2020-02-19 18:00:45.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15205,6 +15205,44 @@ namespace Barryvdh\Debugbar {
  
 }
 
+namespace hisorange\BrowserDetect { 
+
+    /**
+     * Class Facade
+     *
+     * @example Browser::isMobile();
+     * @package hisorange\BrowserDetect
+     */ 
+    class Facade {
+        
+        /**
+         * 
+         *
+         * @inheritdoc 
+         * @static 
+         */ 
+        public static function detect()
+        {
+                        /** @var \hisorange\BrowserDetect\Parser $instance */
+                        return $instance->detect();
+        }
+        
+        /**
+         * 
+         *
+         * @inheritdoc 
+         * @static 
+         */ 
+        public static function parse($agent)
+        {
+                        /** @var \hisorange\BrowserDetect\Parser $instance */
+                        return $instance->parse($agent);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -18000,6 +18038,8 @@ namespace  {
     class View extends \Illuminate\Support\Facades\View {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
+
+    class Browser extends \hisorange\BrowserDetect\Facade {}
  
 }
 
